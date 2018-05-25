@@ -5,6 +5,8 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import org.hibernate.annotations.Type;
 
 import co.jeffersonortiz.choroplethapi.entity.util.AbstractEntity;
@@ -31,11 +33,27 @@ public class Shape implements AbstractEntity {
 	private String country;
 	@Embedded
 	private ShapeProperty properties;
+	@Transient
+	private String geometry;
 	
 	/**
-	 * Default constructor
+	 * Constructor
 	 */
 	public Shape() {}
+	
+	/**
+	 * Constructor with parameters
+	 * @param id
+	 * @param type
+	 * @param country
+	 * @param properties
+	 */
+	public Shape(String id, String type, String country, ShapeProperty properties) {
+		this.id = id;
+		this.type = type;
+		this.country = country;
+		this.properties = properties;
+	}
 	
 	public void setLazyHibernateSetup() throws CloneNotSupportedException {
 		this.getProperties();
@@ -72,5 +90,13 @@ public class Shape implements AbstractEntity {
 
 	public void setProperties(ShapeProperty properties) {
 		this.properties = properties;
+	}
+
+	public String getGeometry() {
+		return geometry;
+	}
+
+	public void setGeometry(String geometry) {
+		this.geometry = geometry;
 	}
 }

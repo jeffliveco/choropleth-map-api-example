@@ -3,11 +3,14 @@ package co.jeffersonortiz.choroplethapi.dao;
 import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
+import com.google.gson.Gson;
 import com.mongodb.MongoQueryException;
 
 import co.jeffersonortiz.choroplethapi.dao.constants.DataAccessError;
@@ -56,7 +59,7 @@ public class ShapeDao extends AbstractDao<Shape, Serializable> {
 	
 	/**
 	 * 
-	 * @return
+	 * @return shapes
 	 * @throws DataAccessException
 	 */
 	public List<Shape> getAll() throws DataAccessException {
@@ -79,6 +82,32 @@ public class ShapeDao extends AbstractDao<Shape, Serializable> {
 			DataAccessError error = DataAccessError.QUERY_ERROR;
 			logger.info(error.message() + ": " + e.getErrorMessage());
 			throw new DataAccessException(error.message(), e.getCause());
+		} catch (PersistenceException e) {
+			DataAccessError error = DataAccessError.GENERAL;
+			logger.info(error.message() + ": " + e.getMessage());
+			throw new DataAccessException(error.message(), e.getCause());
+		}
+	}
+
+	/**
+	 * 
+	 * @param shapes
+	 * @return
+	 * @throws DataAccessException
+	 */	
+	public List<Shape> getGeometries(List<Shape> shapes) throws DataAccessException {
+		try {
+			List<Shape> result = shapes.stream()
+				.map(mapper -> {
+					String query = "db.shapes.find({ _id: ObjectId('" + mapper.getId() + "') })";
+					Object[] dataGeometry = (Object[]) getEntityManager().createNativeQuery(query).getSingleResult();
+					mapper.setGeometry(new Gson().toJson(dataGeometry[4]));
+					return mapper;
+				})
+				.collect(Collectors.toList());
+			return result;
+		} catch (NoResultException e) {
+			return shapes;
 		} catch (PersistenceException e) {
 			DataAccessError error = DataAccessError.GENERAL;
 			logger.info(error.message() + ": " + e.getMessage());

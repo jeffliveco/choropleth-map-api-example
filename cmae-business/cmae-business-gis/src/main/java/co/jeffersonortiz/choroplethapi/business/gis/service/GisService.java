@@ -1,7 +1,6 @@
 package co.jeffersonortiz.choroplethapi.business.gis.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 
@@ -48,11 +47,9 @@ public class GisService implements IGisService {
 	public List<ShapeDto> getAllWord() throws BusinessException {
 		try {
 			List<Shape> resultData = shapeDao.getAll();
-			List<ShapeDto> result = resultData.stream()
-					//.filter(shape -> shape.getCountry().equals("AFG"))
-					.map(mapper -> new ShapeDto(mapper.getId(), mapper.getType(), mapper.getCountry(), mapper.getGeometry().toBsonDocument().toJson()))
-					.collect(Collectors.toList());
-			return result;
+			resultData = shapeDao.getGeometries(resultData);
+			
+			return new ShapeDto().mapperListEntityToListDto(resultData);
 		} catch (DataAccessException e) {
 			throw new BusinessException(e.getMessage());
 		}
