@@ -3,10 +3,12 @@
   <parent>
     <groupId>co.jeffersonortiz.choroplethapi</groupId>
     <artifactId>choropleth-api-example</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
   </parent>
+  
   <artifactId>cmae-build</artifactId>
   <packaging>pom</packaging>
+  
   <modules>
   	<module>cmae-build-gis</module>
   </modules>

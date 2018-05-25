@@ -3,14 +3,18 @@
   <parent>
     <groupId>co.jeffersonortiz.choroplethapi</groupId>
     <artifactId>choropleth-api-example</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
   </parent>
+  
+  <name>Common</name>
   <artifactId>cmae-common</artifactId>
   <packaging>pom</packaging>
+  
   <modules>
   	<module>cmae-common-entity</module>
   	<module>cmae-common-exception</module>
   	<module>cmae-common-interface</module>
   	<module>cmae-common-data</module>
+  	<module>cmae-common-util</module>
   </modules>
 </project>

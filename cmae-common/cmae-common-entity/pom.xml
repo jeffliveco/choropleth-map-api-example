@@ -4,10 +4,12 @@
 	<parent>
 		<groupId>co.jeffersonortiz.choroplethapi</groupId>
 		<artifactId>cmae-common</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.1</version>
 	</parent>
+	
 	<artifactId>cmae-common-entity</artifactId>
-	<name>Common Entity</name>
+	<name>Entity Common Project</name>
+	<version>${version.project.common.entity}</version>
 
 	<dependencies>
 		<dependency>

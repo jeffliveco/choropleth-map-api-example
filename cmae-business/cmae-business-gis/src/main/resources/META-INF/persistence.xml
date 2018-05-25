@@ -7,7 +7,7 @@
 		<class>co.jeffersonortiz.choroplethapi.entity.User</class>
 		<class>co.jeffersonortiz.choroplethapi.entity.Shape</class>
 		<properties>
-			<property name="hibernate.transaction.jta.platform" value="JBossTS" />
+			<!-- <property name="hibernate.transaction.jta.platform" value="JBossTS" /> -->
 			<property name="hibernate.ogm.datastore.provider" value="mongodb" />
 			<property name="hibernate.ogm.datastore.database" value="geo-spatial-test" />
 			<property name="hibernate.ogm.datastore.create_database"

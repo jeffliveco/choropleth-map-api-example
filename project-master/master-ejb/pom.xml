@@ -4,8 +4,9 @@
 	<parent>
 		<groupId>co.jeffersonortiz.choroplethapi</groupId>
 		<artifactId>project-master</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.1</version>
 	</parent>
+	
 	<artifactId>master-ejb</artifactId>
 	<packaging>pom</packaging>
 	<name>Master EJB project</name>
@@ -51,28 +52,27 @@
 		</dependency>
 
 		<dependency>
-			<groupId>dom4j</groupId>
-			<artifactId>dom4j</artifactId>
-			<version>1.6.1</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
 			<groupId>co.jeffersonortiz.choroplethapi</groupId>
 			<artifactId>cmae-common-entity</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${version.project.common.entity}</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>co.jeffersonortiz.choroplethapi</groupId>
 			<artifactId>cmae-common-exception</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${version.project.common.exception}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>co.jeffersonortiz.choroplethapi</groupId>
+			<artifactId>cmae-common-util</artifactId>
+			<version>${version.project.common.util}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>co.jeffersonortiz.choroplethapi</groupId>
 			<artifactId>cmae-common-interface</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${version.project.common.interface}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>co.jeffersonortiz.choroplethapi</groupId>
@@ -88,7 +88,7 @@
 		<dependency>
 			<groupId>co.jeffersonortiz.choroplethapi</groupId>
 			<artifactId>cmae-common-data</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${version.project.common.data}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>co.jeffersonortiz.choroplethapi</groupId>
@@ -106,7 +106,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>${project.artifactId}</finalName>
+		<finalName>${project.artifactId}-${project.version}</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-ejb-plugin</artifactId>

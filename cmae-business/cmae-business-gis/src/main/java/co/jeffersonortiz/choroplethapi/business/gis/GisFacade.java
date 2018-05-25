@@ -1,7 +1,9 @@
 package co.jeffersonortiz.choroplethapi.business.gis;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
@@ -12,7 +14,7 @@ import co.jeffersonortiz.choroplethapi.business.gis.facade.GisFacadeLocal;
 import co.jeffersonortiz.choroplethapi.business.gis.facade.GisFacadeRemote;
 import co.jeffersonortiz.choroplethapi.business.gis.service.GisService;
 import co.jeffersonortiz.choroplethapi.business.gis.service.IGisService;
-import co.jeffersonortiz.choroplethapi.entity.Shape;
+import co.jeffersonortiz.choroplethapi.dto.ShapeDto;
 import co.jeffersonortiz.choroplethapi.exception.business.BusinessException;
 
 /**
@@ -25,17 +27,21 @@ import co.jeffersonortiz.choroplethapi.exception.business.BusinessException;
 @Local(GisFacadeLocal.class)
 public class GisFacade implements GisFacadeLocal, GisFacadeRemote {
 
+	private final static Logger logger = Logger.getLogger(GisFacade.class.getName());
+	
 	private IGisService service;
 	
 	@PersistenceContext(unitName="cmae-gis-persistence")
 	private EntityManager em;
 	
-	public GisFacade() {
+	@PostConstruct
+	public void init() {
+		logger.info("EntityManager->" + em);
 		this.service = GisService.getInstance(em);
 	}
 	
 	@Override
-	public List<Shape> getAllWord() throws BusinessException {
+	public List<ShapeDto> getAllWord() throws BusinessException {
 		return this.service.getAllWord();
 	}
 }

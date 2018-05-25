@@ -5,9 +5,12 @@
 	<parent>
 		<groupId>co.jeffersonortiz.choroplethapi</groupId>
 		<artifactId>cmae-common</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.1</version>
 	</parent>
+	
 	<artifactId>cmae-common-data</artifactId>
+	<version>${version.project.common.data}</version>
+	
 	<dependencies>
 		<!-- Import the JPA API, we use provided scope as the API is included in 
 			JBoss WildFly -->
@@ -25,20 +28,23 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.hibernate.ogm</groupId>
+			<artifactId>hibernate-ogm-mongodb</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
 			<groupId>co.jeffersonortiz.choroplethapi</groupId>
 			<artifactId>cmae-common-entity</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${version.project.common.entity}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>co.jeffersonortiz.choroplethapi</groupId>
 			<artifactId>cmae-common-exception</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.hibernate.ogm</groupId>
-			<artifactId>hibernate-ogm-mongodb</artifactId>
-		</dependency>
+			<version>${version.project.common.exception}</version>
+		</dependency>	
 	</dependencies>
+	
+	<name>Data Common Project</name>
 </project>

@@ -61,7 +61,7 @@ public class ShapeDao extends AbstractDao<Shape, Serializable> {
 	 */
 	public List<Shape> getAll() throws DataAccessException {
 		try {
-			// 1. set query
+			// 1. set query		
 			Query queryHQL = getEntityManager().createQuery("FROM Shape");
 			// 3. execute query and set results
 			List<Shape> resultData = queryHQL.getResultList();

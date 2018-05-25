@@ -1,10 +1,12 @@
 package co.jeffersonortiz.choroplethapi.business.gis.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 
 import co.jeffersonortiz.choroplethapi.dao.ShapeDao;
+import co.jeffersonortiz.choroplethapi.dto.ShapeDto;
 import co.jeffersonortiz.choroplethapi.entity.Shape;
 import co.jeffersonortiz.choroplethapi.exception.business.BusinessException;
 import co.jeffersonortiz.choroplethapi.exception.data.DataAccessException;
@@ -43,12 +45,16 @@ public class GisService implements IGisService {
 	}
 	
 	@Override
-	public List<Shape> getAllWord() throws BusinessException {
+	public List<ShapeDto> getAllWord() throws BusinessException {
 		try {
-			return shapeDao.getAll();
+			List<Shape> resultData = shapeDao.getAll();
+			List<ShapeDto> result = resultData.stream()
+					//.filter(shape -> shape.getCountry().equals("AFG"))
+					.map(mapper -> new ShapeDto(mapper.getId(), mapper.getType(), mapper.getCountry(), mapper.getGeometry().toBsonDocument().toJson()))
+					.collect(Collectors.toList());
+			return result;
 		} catch (DataAccessException e) {
 			throw new BusinessException(e.getMessage());
 		}
 	}
-	
 }

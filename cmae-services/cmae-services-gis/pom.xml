@@ -3,16 +3,19 @@
   <parent>
     <groupId>co.jeffersonortiz.choroplethapi</groupId>
     <artifactId>master-war</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <relativePath>../../project-master/master-war/pom.xml</relativePath>
+    <version>0.0.1</version>
   </parent>
+  
   <artifactId>cmae-services-gis</artifactId>
   <packaging>war</packaging>
+  <version>${version.project.services.gis}</version>
+  
   <dependencies>
   	<dependency>
   		<groupId>co.jeffersonortiz.choroplethapi</groupId>
   		<artifactId>cmae-business-gis</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
+  		<version>${version.project.business.gis}</version>
   		<type>ejb</type>
         <scope>provided</scope>
   	</dependency>

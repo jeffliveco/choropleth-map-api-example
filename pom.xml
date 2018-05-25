@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>co.jeffersonortiz.choroplethapi</groupId>
 	<artifactId>choropleth-api-example</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<packaging>pom</packaging>
 	<name>ChoroplethService</name>
 	<description>Principal module contains all micro projects</description>
@@ -36,7 +36,7 @@
 		<!-- Define the version of the JBoss BOMs we want to import to specify
 			tested stacks. -->
 		<version.jboss.bom>8.2.2.Final</version.jboss.bom>
-		<version.hibernate.bom>5.4.0.Alpha1</version.hibernate.bom>
+		<version.hibernate.bom>5.3.1.Final</version.hibernate.bom>
 		<!-- <version.wildfly>9.0.0.Alpha1</version.wildfly> -->
 
 		<!-- other plugin versions -->
@@ -49,6 +49,22 @@
 		<!-- maven-compiler-plugin -->
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
+		
+		<!-- package common versions -->
+		<version.project.common.data>0.0.1-SNAPSHOT</version.project.common.data>
+		<version.project.common.entity>0.0.1-SNAPSHOT</version.project.common.entity>
+		<version.project.common.exception>0.0.1-SNAPSHOT</version.project.common.exception>
+		<version.project.common.interface>0.0.1-SNAPSHOT</version.project.common.interface>
+		<version.project.common.util>0.0.1-SNAPSHOT</version.project.common.util>
+		
+		<!-- package business versions -->
+		<version.project.business.gis>0.0.1-SNAPSHOT</version.project.business.gis>
+		
+		<!-- package services versions -->
+		<version.project.services.gis>0.0.1-SNAPSHOT</version.project.services.gis>
+		
+		<!-- package build versions -->
+		<version.project.build.gis>0.0.1-SNAPSHOT</version.project.build.gis>
 	</properties>
 	
 	<dependencyManagement>

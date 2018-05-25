@@ -4,8 +4,9 @@
 	<parent>
 		<groupId>co.jeffersonortiz.choroplethapi</groupId>
 		<artifactId>project-master</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.1</version>
 	</parent>
+	
 	<artifactId>master-ear</artifactId>
 	<packaging>pom</packaging>
 	<name>Master EAR project</name>
@@ -20,12 +21,12 @@
 	</licenses>
 
 	<build>
-		<finalName>${project.artifactId}</finalName>
+		<finalName>${project.artifactId}-${project.version}</finalName>
 		<plugins>
+		 	<!-- Test with wildfly 12 error in maven repository -->
 			<!--<plugin>
 				<groupId>org.wildfly.build</groupId>
 				<artifactId>wildfly-server-provisioning-maven-plugin</artifactId>
-				<version>1.2.10.Final</version>
 				<executions>
 					<execution>
 						<id>server-provisioning</id>
@@ -38,7 +39,7 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>-->
+			</plugin> -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-ear-plugin</artifactId>
@@ -52,7 +53,7 @@
 					<defaultLibBundleDir>lib</defaultLibBundleDir>
 					<archive>
 						<manifestEntries>
-							<Dependencies>org.hibernate.ogm:5.4 services, org.hibernate.ogm.mongodb:5.4 services</Dependencies>
+							<Dependencies>org.dom4j, org.hibernate.ogm:5.3 services, org.hibernate.ogm.mongodb:5.3 services</Dependencies>
 						</manifestEntries>
 					</archive>
 				</configuration>
@@ -65,7 +66,7 @@
 				<groupId>org.wildfly.plugins</groupId>
 				<artifactId>wildfly-maven-plugin</artifactId>
 				<configuration>
-					<filename>${project.artifactId}.ear</filename>
+					<filename>${project.artifactId}-${project.version}.ear</filename>
 					<skip>false</skip>
 				</configuration>
 			</plugin>

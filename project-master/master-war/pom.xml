@@ -4,8 +4,9 @@
 	<parent>
 		<groupId>co.jeffersonortiz.choroplethapi</groupId>
 		<artifactId>project-master</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.1</version>
 	</parent>
+	
 	<artifactId>master-war</artifactId>
 	<packaging>pom</packaging>
 	<name>Master WAR project</name>
@@ -57,18 +58,43 @@
 			<version>2.8.2</version>
 		</dependency>
 
-		<!-- Add util module -->
-		<!--<dependency>
-			<groupId>com.coinspay.cryptopaymentgateway</groupId>
-			<artifactId>cpg-util</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<type>jar</type>
-		</dependency>-->
+		<dependency>
+			<groupId>co.jeffersonortiz.choroplethapi</groupId>
+			<artifactId>cmae-common-entity</artifactId>
+			<version>${version.project.common.entity}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>co.jeffersonortiz.choroplethapi</groupId>
+			<artifactId>cmae-common-exception</artifactId>
+			<version>${version.project.common.exception}</version>
+		</dependency>
 
+		<dependency>
+			<groupId>co.jeffersonortiz.choroplethapi</groupId>
+			<artifactId>cmae-common-util</artifactId>
+			<version>${version.project.common.util}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>co.jeffersonortiz.choroplethapi</groupId>
+			<artifactId>cmae-common-interface</artifactId>
+			<version>${version.project.common.interface}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>co.jeffersonortiz.choroplethapi</groupId>
+					<artifactId>cmae-common-exception</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>co.jeffersonortiz.choroplethapi</groupId>
+					<artifactId>cmae-common-entity</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 	</dependencies>
 
 	<build>
-		<finalName>${project.artifactId}</finalName>
+		<finalName>${project.artifactId}-${project.version}</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
