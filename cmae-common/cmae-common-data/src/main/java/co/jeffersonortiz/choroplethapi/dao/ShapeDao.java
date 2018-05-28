@@ -10,7 +10,6 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
-import com.google.gson.Gson;
 import com.mongodb.MongoQueryException;
 
 import co.jeffersonortiz.choroplethapi.dao.constants.DataAccessError;
@@ -101,7 +100,7 @@ public class ShapeDao extends AbstractDao<Shape, Serializable> {
 				.map(mapper -> {
 					String query = "db.shapes.find({ _id: ObjectId('" + mapper.getId() + "') })";
 					Object[] dataGeometry = (Object[]) getEntityManager().createNativeQuery(query).getSingleResult();
-					mapper.setGeometry(new Gson().toJson(dataGeometry[4]));
+					mapper.setGeometry(dataGeometry[4]);
 					return mapper;
 				})
 				.collect(Collectors.toList());

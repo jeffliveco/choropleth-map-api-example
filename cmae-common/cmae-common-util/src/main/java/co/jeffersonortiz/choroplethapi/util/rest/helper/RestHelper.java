@@ -21,9 +21,9 @@ public class RestHelper {
 		unauth.setMessage("NO_API_KEY");
 		
 		if(token == null) {
-			return Response.status(status).entity(unauth).build();
+			return Response.status(status).entity(unauth).header("Access-Control-Allow-Origin", "*").build();
 		} else if(token.isEmpty()) {
-			return Response.status(status).entity(unauth).build();
+			return Response.status(status).entity(unauth).header("Access-Control-Allow-Origin", "*").build();
 		}
 		
 		return null;
@@ -37,7 +37,7 @@ public class RestHelper {
 		success.setModel(model);
 		success.setData(data);
 		
-		return Response.status(status).entity(success).build();
+		return Response.status(status).entity(success).header("Access-Control-Allow-Origin", "*").build();
 	}
 	
 	public Response responseErrorBuilder(StatusType status, String type, Throwable error) {
@@ -48,6 +48,6 @@ public class RestHelper {
 		response.setMessage(error.getMessage());
 		response.setCausesError(error.getStackTrace());
 		
-		return Response.status(status).entity(response).type(MediaType.APPLICATION_JSON).build();
+		return Response.status(status).entity(response).type(MediaType.APPLICATION_JSON).header("Access-Control-Allow-Origin", "*").build();
 	}
 }

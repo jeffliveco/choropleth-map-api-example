@@ -48,7 +48,6 @@ public class GisService implements IGisService {
 		try {
 			List<Shape> resultData = shapeDao.getAll();
 			resultData = shapeDao.getGeometries(resultData);
-			
 			return new ShapeDto().mapperListEntityToListDto(resultData);
 		} catch (DataAccessException e) {
 			throw new BusinessException(e.getMessage());

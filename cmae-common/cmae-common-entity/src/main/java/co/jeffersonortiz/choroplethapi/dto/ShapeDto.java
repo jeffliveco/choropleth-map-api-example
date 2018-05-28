@@ -20,16 +20,14 @@ public class ShapeDto implements AbstractDto<ShapeDto, Shape> {
 	
 	private String id;
 	private String type;
-	private String country;
 	private ShapePropertyDto properties;
-	private String geometry;
+	private Object geometry;
 	
 	public ShapeDto() { }
 	
-	public ShapeDto(String id, String type, String country, ShapePropertyDto properties, String geometry) {
+	public ShapeDto(String id, String type, ShapePropertyDto properties, Object geometry) {
 		this.id = id;
 		this.type = type;
-		this.country = country;
 		this.properties = properties;
 		this.geometry = geometry;
 	}
@@ -37,31 +35,40 @@ public class ShapeDto implements AbstractDto<ShapeDto, Shape> {
 	// Mapping to DTO
 	@Override
 	public ShapeDto mapperEntityToDto(Shape entity) {
-		ShapeDto result = new ShapeDto(entity.getId(), entity.getType(), entity.getCountry(),  new ShapePropertyDto().mapperEntityToDto(entity.getProperties()), entity.getGeometry());
-		return result;
+		ShapePropertyDto properties = new ShapePropertyDto().mapperEntityToDto(entity.getProperties());
+		properties.setIso(entity.getCountry());
+		return new ShapeDto(entity.getId(), entity.getType(), properties, entity.getGeometry());
 	}
 	
 	@Override
 	public List<ShapeDto> mapperListEntityToListDto(List<Shape> listEntity) {
-		List<ShapeDto> result = listEntity.stream()
-			.map(mapper -> new ShapeDto(mapper.getId(), mapper.getType(), mapper.getCountry(),  new ShapePropertyDto().mapperEntityToDto(mapper.getProperties()), mapper.getGeometry()))
+		return listEntity.stream()
+			.map(mapper -> {
+				ShapePropertyDto properties = new ShapePropertyDto().mapperEntityToDto(mapper.getProperties());
+				properties.setIso(mapper.getCountry());
+				return new ShapeDto(mapper.getId(), mapper.getType(), properties, mapper.getGeometry());
+			})
 			.collect(Collectors.toList());
-		return result;
 	}
 	
 	// Mapping to Entity
 	@Override
 	public Shape mapperDtoToEntity(ShapeDto dto) {
-		Shape result = new Shape(dto.getId(), dto.getType(), dto.getCountry(),  new ShapePropertyDto().mapperDtoToEntity(dto.getProperties()));
-		return result;
+		return new Shape(dto.getId(), 
+				dto.getType(), 
+				dto.getProperties().getIso(), 
+				new ShapePropertyDto().mapperDtoToEntity(dto.getProperties())
+		);
 	}
 	
 	@Override
 	public List<Shape> mapperListDtoToListEntity(List<ShapeDto> listDto){
-		List<Shape> result = listDto.stream()
-			.map(mapper -> new Shape(mapper.getId(), mapper.getType(), mapper.getCountry(),  new ShapePropertyDto().mapperDtoToEntity(mapper.getProperties())))
-			.collect(Collectors.toList());
-		return result;
+		return listDto.stream()
+			.map(mapper -> new Shape(mapper.getId(), 
+					mapper.getType(), 
+					mapper.getProperties().getIso(), 
+					new ShapePropertyDto().mapperDtoToEntity(mapper.getProperties()))
+			).collect(Collectors.toList());
 	}
 	
 	// Getters & Setters
@@ -80,20 +87,12 @@ public class ShapeDto implements AbstractDto<ShapeDto, Shape> {
 	public void setType(String type) {
 		this.type = type;
 	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
 	
-	public String getGeometry() {
+	public Object getGeometry() {
 		return geometry;
 	}
 
-	public void setGeometry(String geometry) {
+	public void setGeometry(Object geometry) {
 		this.geometry = geometry;
 	}
 
