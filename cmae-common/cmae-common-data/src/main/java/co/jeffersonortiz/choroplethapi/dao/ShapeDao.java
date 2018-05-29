@@ -95,25 +95,22 @@ public class ShapeDao extends AbstractDao<Shape, Serializable> {
 	 * @throws DataAccessException
 	 */	
 	public List<Shape> getGeometries(List<Shape> shapes) throws DataAccessException {
-		try {
-			DataAccessError error = DataAccessError.GENERAL;
-			throw new DataAccessException(error.message());
-			
-//			// 1. Iterate list shapes
-//			List<Shape> result = shapes.stream()
-//				.map(mapper -> {
-//					// 2. Construct native query
-//					String query = "db.shapes.find({ _id: ObjectId('" + mapper.getId() + "') })";
-//					// 3. Get data for query
-//					Object[] dataGeometry = (Object[]) getEntityManager().createNativeQuery(query).getSingleResult();
-//					// 4. Set geometry to Shape data
-//					mapper.setGeometry(dataGeometry[4]);
-//					// 5. Return shape data
-//					return mapper;
-//				})
-//				.collect(Collectors.toList());
-//			// 6. Return result
-//			return result;
+		try {			
+			// 1. Iterate list shapes
+			List<Shape> result = shapes.stream()
+				.map(mapper -> {
+					// 2. Construct native query
+					String query = "db.shapes.find({ _id: ObjectId('" + mapper.getId() + "') })";
+					// 3. Get data for query
+					Object[] dataGeometry = (Object[]) getEntityManager().createNativeQuery(query).getSingleResult();
+					// 4. Set geometry to Shape data
+					mapper.setGeometry(dataGeometry[4]);
+					// 5. Return shape data
+					return mapper;
+				})
+				.collect(Collectors.toList());
+			// 6. Return result
+			return result;
 		} catch (NoResultException e) {
 			return shapes;
 		} catch (MongoQueryException e) {
