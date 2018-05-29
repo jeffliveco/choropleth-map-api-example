@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>co.jeffersonortiz.choroplethapi</groupId>
 		<artifactId>project-master</artifactId>
-		<version>0.0.1</version>
+		<version>0.0.2-SNAPSHOT</version>
 	</parent>
 	
 	<artifactId>master-war</artifactId>
@@ -45,6 +45,14 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<!-- Import the EJB API, we use provided scope as the API is included in 
+			JBoss WildFly -->
+		<dependency>
+			<groupId>org.jboss.spec.javax.ejb</groupId>
+			<artifactId>jboss-ejb-api_3.2_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.jboss.logging/jboss-logging -->
 		<dependency>
 			<groupId>org.jboss.logging</groupId>
@@ -72,8 +80,8 @@
 
 		<dependency>
 			<groupId>co.jeffersonortiz.choroplethapi</groupId>
-			<artifactId>cmae-common-util</artifactId>
-			<version>${version.project.common.util}</version>
+			<artifactId>cmae-common-util-services</artifactId>
+			<version>${version.project.common.util.services}</version>
 		</dependency>
 
 		<dependency>

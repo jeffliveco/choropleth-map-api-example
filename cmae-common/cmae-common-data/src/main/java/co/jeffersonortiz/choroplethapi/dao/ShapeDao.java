@@ -10,10 +10,9 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
-import com.google.gson.Gson;
 import com.mongodb.MongoQueryException;
 
-import co.jeffersonortiz.choroplethapi.dao.constants.DataAccessError;
+import co.jeffersonortiz.choroplethapi.constants.data.DataAccessError;
 import co.jeffersonortiz.choroplethapi.dao.util.AbstractDao;
 import co.jeffersonortiz.choroplethapi.entity.Shape;
 import co.jeffersonortiz.choroplethapi.exception.data.DataAccessException;
@@ -96,18 +95,28 @@ public class ShapeDao extends AbstractDao<Shape, Serializable> {
 	 * @throws DataAccessException
 	 */	
 	public List<Shape> getGeometries(List<Shape> shapes) throws DataAccessException {
-		try {
+		try {			
+			// 1. Iterate list shapes
 			List<Shape> result = shapes.stream()
 				.map(mapper -> {
+					// 2. Construct native query
 					String query = "db.shapes.find({ _id: ObjectId('" + mapper.getId() + "') })";
+					// 3. Get data for query
 					Object[] dataGeometry = (Object[]) getEntityManager().createNativeQuery(query).getSingleResult();
-					mapper.setGeometry(new Gson().toJson(dataGeometry[4]));
+					// 4. Set geometry to Shape data
+					mapper.setGeometry(dataGeometry[4]);
+					// 5. Return shape data
 					return mapper;
 				})
 				.collect(Collectors.toList());
+			// 6. Return result
 			return result;
 		} catch (NoResultException e) {
 			return shapes;
+		} catch (MongoQueryException e) {
+			DataAccessError error = DataAccessError.QUERY_ERROR;
+			logger.info(error.message() + ": " + e.getErrorMessage());
+			throw new DataAccessException(error.message(), e.getCause());
 		} catch (PersistenceException e) {
 			DataAccessError error = DataAccessError.GENERAL;
 			logger.info(error.message() + ": " + e.getMessage());

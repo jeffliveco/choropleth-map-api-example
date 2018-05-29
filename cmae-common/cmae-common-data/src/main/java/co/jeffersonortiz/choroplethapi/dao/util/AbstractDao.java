@@ -7,7 +7,7 @@ import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.TransactionRequiredException;
 
-import co.jeffersonortiz.choroplethapi.dao.constants.DataAccessError;
+import co.jeffersonortiz.choroplethapi.constants.data.DataAccessError;
 import co.jeffersonortiz.choroplethapi.entity.util.AbstractEntity;
 import co.jeffersonortiz.choroplethapi.exception.data.DataAccessException;
 

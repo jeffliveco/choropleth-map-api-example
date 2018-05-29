@@ -15,8 +15,6 @@ public class MessageResponseRest implements Serializable {
 	private int code;
 	private String status;
 	private String type;
-	private String message;
-	private StackTraceElement[] causesError;
 	private String model;
 	private Object data;
 	
@@ -42,22 +40,6 @@ public class MessageResponseRest implements Serializable {
 	
 	public void setType(String type) {
 		this.type = type;
-	}
-	
-	public String getMessage() {
-		return message;
-	}
-	
-	public void setMessage(String message) {
-		this.message = message;
-	}
-	
-	public StackTraceElement[] getCausesError() {
-		return causesError;
-	}
-	
-	public void setCausesError(StackTraceElement[] causesError) {
-		this.causesError = causesError;
 	}
 	
 	public String getModel() {

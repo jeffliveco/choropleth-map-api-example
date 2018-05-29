@@ -4,7 +4,7 @@
   <parent>
     <groupId>co.jeffersonortiz.choroplethapi</groupId>
     <artifactId>cmae-common</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2-SNAPSHOT</version>
   </parent>
   
   <artifactId>cmae-common-util</artifactId>
@@ -13,31 +13,9 @@
   
   <dependencies>
   	<dependency>
-		<groupId>javax.enterprise</groupId>
-		<artifactId>cdi-api</artifactId>
-		<scope>provided</scope>
-	</dependency>
-  	<dependency>
-		<groupId>org.jboss.resteasy</groupId>
-		<artifactId>jaxrs-api</artifactId>
-		<scope>provided</scope>
-	</dependency>
-	<dependency>
 		<groupId>co.jeffersonortiz.choroplethapi</groupId>
-		<artifactId>cmae-common-interface</artifactId>
-		<version>${version.project.common.interface}</version>
-		<exclusions>
-			<exclusion>
-				<groupId>co.jeffersonortiz.choroplethapi</groupId>
-				<artifactId>cmae-common-exception</artifactId>
-			</exclusion>
-			<exclusion>
-				<groupId>co.jeffersonortiz.choroplethapi</groupId>
-				<artifactId>cmae-common-entity</artifactId>
-			</exclusion>
-		</exclusions>
+		<artifactId>cmae-common-exception</artifactId>
+		<version>${version.project.common.exception}</version>
 	</dependency>
-	
   </dependencies>
-  
 </project>

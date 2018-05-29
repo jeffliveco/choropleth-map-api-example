@@ -1,13 +1,17 @@
 package co.jeffersonortiz.choroplethapi.util.rest.helper;
 
 import javax.enterprise.inject.Default;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.Response.StatusType;
 
 import co.jeffersonortiz.choroplethapi.util.rest.model.MessageResponseRest;
 
+/**
+ * 
+ * @author <a href="mailto:me@jeffersonortiz.com">Jefferson Ortiz Quiroga</a>
+ * @version 1.0
+ */
 @Default
 public class RestHelper {
 	
@@ -18,36 +22,46 @@ public class RestHelper {
 		unauth.setCode(status.getStatusCode());
 		unauth.setStatus(status.toString());
 		unauth.setType(MessageResponseRest.TYPE_ERROR);
-		unauth.setMessage("NO_API_KEY");
+		unauth.setData("NO_API_KEY");
 		
 		if(token == null) {
-			return Response.status(status).entity(unauth).build();
+			return this.build(status, unauth);
 		} else if(token.isEmpty()) {
-			return Response.status(status).entity(unauth).build();
+			return this.build(status, unauth);
 		}
 		
 		return null;
 	}
 	
-	public Response responseSucessBuilder(Status status, String type, String model, Object data) {
+	public Response responseSucessBuilder(String type, String model, Object data) {
+		Status successResponse = Status.OK;
+		
 		MessageResponseRest success = new MessageResponseRest();
-		success.setCode(status.getStatusCode());
-		success.setStatus(status.toString());
+		success.setCode(successResponse.getStatusCode());
+		success.setStatus(successResponse.toString());
 		success.setType(type);
 		success.setModel(model);
 		success.setData(data);
 		
-		return Response.status(status).entity(success).build();
+		return this.build(successResponse, success);
 	}
 	
-	public Response responseErrorBuilder(StatusType status, String type, Throwable error) {
+	public Response responseSucessGeneric(Object data) {	
+		return this.build(Status.OK, data);
+	}
+	
+	public Response responseErrorBuilder(StatusType status, String type, String error) {
 		MessageResponseRest response = new MessageResponseRest();
 		response.setCode(status.getStatusCode());
 		response.setStatus(status.toString());
 		response.setType(type);
-		response.setMessage(error.getMessage());
-		response.setCausesError(error.getStackTrace());
+		response.setData(error);
+		response.setModel(String.class.getSimpleName());
 		
-		return Response.status(status).entity(response).type(MediaType.APPLICATION_JSON).build();
+		return this.build(status, response);
+	}
+	
+	private Response build(StatusType status, Object data) {
+		return Response.status(status).entity(data).header("Access-Control-Allow-Origin", "*").build();
 	}
 }

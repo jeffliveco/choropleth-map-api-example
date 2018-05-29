@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>co.jeffersonortiz.choroplethapi</groupId>
 	<artifactId>choropleth-api-example</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>ChoroplethService</name>
 	<description>Principal module contains all micro projects</description>
@@ -50,21 +50,25 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		
+		<version.type>SNAPSHOT</version.type>
+		
 		<!-- package common versions -->
-		<version.project.common.data>0.0.1-SNAPSHOT</version.project.common.data>
-		<version.project.common.entity>0.0.1-SNAPSHOT</version.project.common.entity>
-		<version.project.common.exception>0.0.1-SNAPSHOT</version.project.common.exception>
-		<version.project.common.interface>0.0.1-SNAPSHOT</version.project.common.interface>
-		<version.project.common.util>0.0.1-SNAPSHOT</version.project.common.util>
+		<version.project.common.data>0.0.1-${version.type}</version.project.common.data>
+		<version.project.common.entity>0.0.1-${version.type}</version.project.common.entity>
+		<version.project.common.exception>0.0.1-${version.type}</version.project.common.exception>
+		<version.project.common.interface>0.0.1-${version.type}</version.project.common.interface>
+		<version.project.common.util>0.0.1-${version.type}</version.project.common.util>
+		<version.project.common.util.services>0.0.1-${version.type}</version.project.common.util.services>
+		<version.project.common.constants>0.0.1-${version.type}</version.project.common.constants>
 		
 		<!-- package business versions -->
-		<version.project.business.gis>0.0.1-SNAPSHOT</version.project.business.gis>
+		<version.project.business.gis>0.0.1-${version.type}</version.project.business.gis>
 		
 		<!-- package services versions -->
-		<version.project.services.gis>0.0.1-SNAPSHOT</version.project.services.gis>
+		<version.project.services.gis>0.0.1-${version.type}</version.project.services.gis>
 		
 		<!-- package build versions -->
-		<version.project.build.gis>0.0.1-SNAPSHOT</version.project.build.gis>
+		<version.project.build.gis>0.0.1-${version.type}</version.project.build.gis>
 	</properties>
 	
 	<dependencyManagement>

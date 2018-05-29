@@ -34,7 +34,7 @@ public class Shape implements AbstractEntity {
 	@Embedded
 	private ShapeProperty properties;
 	@Transient
-	private String geometry;
+	private Object geometry;
 	
 	/**
 	 * Constructor
@@ -92,11 +92,11 @@ public class Shape implements AbstractEntity {
 		this.properties = properties;
 	}
 
-	public String getGeometry() {
+	public Object getGeometry() {
 		return geometry;
 	}
 
-	public void setGeometry(String geometry) {
+	public void setGeometry(Object geometry) {
 		this.geometry = geometry;
 	}
 }

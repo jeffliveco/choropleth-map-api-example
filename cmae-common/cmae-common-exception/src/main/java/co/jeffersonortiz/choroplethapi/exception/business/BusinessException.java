@@ -1,11 +1,16 @@
 package co.jeffersonortiz.choroplethapi.exception.business;
 
+import javax.ejb.ApplicationException;
+import javax.ejb.EJBException;
+
 /**
  * 
  * @author <a href="mailto:me@jeffersonortiz.com">Jefferson Ortiz Quiroga</a>
  * @version 1.0
  */
-public class BusinessException extends Exception {
+
+@ApplicationException(rollback = true)
+public class BusinessException extends EJBException {
 
 	/**
 	 * Serializer version
@@ -25,7 +30,7 @@ public class BusinessException extends Exception {
 	 * @param message
 	 * @param cause
 	 */
-	public BusinessException(String message, Throwable cause) {
+	public BusinessException(String message, Exception cause) {
 		super(message, cause);
 	}
 }

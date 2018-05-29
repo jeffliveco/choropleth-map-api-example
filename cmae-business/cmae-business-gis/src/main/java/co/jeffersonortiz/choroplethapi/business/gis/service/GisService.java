@@ -15,7 +15,7 @@ import co.jeffersonortiz.choroplethapi.exception.data.DataAccessException;
  * @author <a href="mailto:me@jeffersonortiz.com">Jefferson Ortiz Quiroga</a>
  * @version 1.0
  */
-public class GisService implements IGisService {
+public class GisService implements IGisFacade {
 
 	/**
 	 * 
@@ -48,7 +48,6 @@ public class GisService implements IGisService {
 		try {
 			List<Shape> resultData = shapeDao.getAll();
 			resultData = shapeDao.getGeometries(resultData);
-			
 			return new ShapeDto().mapperListEntityToListDto(resultData);
 		} catch (DataAccessException e) {
 			throw new BusinessException(e.getMessage());
