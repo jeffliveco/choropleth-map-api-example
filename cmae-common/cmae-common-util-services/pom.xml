@@ -1,0 +1,53 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>co.jeffersonortiz.choroplethapi</groupId>
+    <artifactId>cmae-common</artifactId>
+    <version>0.0.1</version>
+  </parent>
+  <artifactId>cmae-common-util-services</artifactId>
+  <version>${version.project.common.util.services}</version>
+  <name>Common Util Services</name>
+  
+  <dependencies>
+  	<dependency>
+		<groupId>javax.enterprise</groupId>
+		<artifactId>cdi-api</artifactId>
+		<scope>provided</scope>
+	</dependency>
+  	<dependency>
+		<groupId>org.jboss.resteasy</groupId>
+		<artifactId>jaxrs-api</artifactId>
+		<scope>provided</scope>
+	</dependency>
+	
+	<dependency>
+		<groupId>co.jeffersonortiz.choroplethapi</groupId>
+		<artifactId>cmae-common-constants</artifactId>
+		<version>${version.project.common.constants}</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>co.jeffersonortiz.choroplethapi</groupId>
+		<artifactId>cmae-common-exception</artifactId>
+		<version>${version.project.common.exception}</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>co.jeffersonortiz.choroplethapi</groupId>
+		<artifactId>cmae-common-interface</artifactId>
+		<version>${version.project.common.interface}</version>
+		<exclusions>
+			<exclusion>
+				<groupId>co.jeffersonortiz.choroplethapi</groupId>
+				<artifactId>cmae-common-exception</artifactId>
+			</exclusion>
+			<exclusion>
+				<groupId>co.jeffersonortiz.choroplethapi</groupId>
+				<artifactId>cmae-common-entity</artifactId>
+			</exclusion>
+		</exclusions>
+	</dependency>
+	
+  </dependencies>
+</project>

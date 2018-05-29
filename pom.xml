@@ -56,6 +56,8 @@
 		<version.project.common.exception>0.0.1-SNAPSHOT</version.project.common.exception>
 		<version.project.common.interface>0.0.1-SNAPSHOT</version.project.common.interface>
 		<version.project.common.util>0.0.1-SNAPSHOT</version.project.common.util>
+		<version.project.common.util.services>0.0.1-SNAPSHOT</version.project.common.util.services>
+		<version.project.common.constants>0.0.1-SNAPSHOT</version.project.common.constants>
 		
 		<!-- package business versions -->
 		<version.project.business.gis>0.0.1-SNAPSHOT</version.project.business.gis>

@@ -41,6 +41,12 @@
 		
 		<dependency>
 			<groupId>co.jeffersonortiz.choroplethapi</groupId>
+			<artifactId>cmae-common-constants</artifactId>
+			<version>${version.project.common.constants}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>co.jeffersonortiz.choroplethapi</groupId>
 			<artifactId>cmae-common-entity</artifactId>
 			<version>${version.project.common.entity}</version>
 		</dependency>

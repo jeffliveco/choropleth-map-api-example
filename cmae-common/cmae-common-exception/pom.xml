@@ -10,4 +10,12 @@
   <version>${version.project.common.exception}</version>
   
   <name>Exception Common Project</name>
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>org.jboss.spec.javax.ejb</groupId>
+		<artifactId>jboss-ejb-api_3.2_spec</artifactId>
+		<scope>provided</scope>
+  	</dependency>
+  </dependencies>
 </project>

@@ -23,6 +23,6 @@ public class MainRoute {
 	
 	@GET
 	public Response init() {
-		return helper.responseSucessBuilder(Response.Status.OK, MessageResponseRest.TYPE_SUCCESS, String.class.getSimpleName(), "Test API by Jefferson Ortiz");
+		return helper.responseSucessBuilder(MessageResponseRest.TYPE_SUCCESS, String.class.getSimpleName(), "Test API by Jefferson Ortiz");
 	}
 }

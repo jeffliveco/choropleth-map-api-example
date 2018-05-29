@@ -15,7 +15,7 @@ import co.jeffersonortiz.choroplethapi.exception.data.DataAccessException;
  * @author <a href="mailto:me@jeffersonortiz.com">Jefferson Ortiz Quiroga</a>
  * @version 1.0
  */
-public class GisService implements IGisService {
+public class GisService implements IGisFacade {
 
 	/**
 	 * 

@@ -3,11 +3,14 @@ package co.jeffersonortiz.choroplethapi.services.gis.delegate;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Default;
+import javax.inject.Inject;
 
 import co.jeffersonortiz.choroplethapi.business.gis.facade.GisFacadeRemote;
+import co.jeffersonortiz.choroplethapi.constants.remote.RemoteProperties;
 import co.jeffersonortiz.choroplethapi.dto.ShapeDto;
-import co.jeffersonortiz.choroplethapi.exception.business.BusinessException;
+import co.jeffersonortiz.choroplethapi.exception.services.ServiceException;
 import co.jeffersonortiz.choroplethapi.util.rest.locator.ServiceLocator;
 
 /**
@@ -20,21 +23,28 @@ public class GisDelegate {
 
 	private Logger logger = Logger.getLogger(GisDelegate.class.getName());
 	
+	@Inject
 	private ServiceLocator locator;
 	private GisFacadeRemote gisService;
 	
+	private static RemoteProperties properties;
+	
 	public GisDelegate() {
-		locator = new ServiceLocator();
-		gisService = (GisFacadeRemote) locator.getService(ServiceLocator.GIS_SERVICE_JNDI);
-		logger.info("service->" + gisService);
+		logger.info("constructor()");
+		properties = RemoteProperties.getInstance();
+	}
+	
+	@PostConstruct
+	public void init() {
+		gisService = (GisFacadeRemote) locator.getService(properties.getGisJNDIService());
 	}
 	
 	public List<ShapeDto> getAllWord() {
 		try {
 			return gisService.getAllWord();
-		} catch (BusinessException e) {
-			e.printStackTrace();
-			return null;
+		} catch (Exception e) {
+			logger.info(e.getMessage());
+			throw new ServiceException(e.getMessage());
 		}
 	}
 

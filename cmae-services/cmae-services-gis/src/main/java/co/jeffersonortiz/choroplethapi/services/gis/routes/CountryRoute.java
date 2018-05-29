@@ -12,13 +12,16 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.google.gson.Gson;
-
 import co.jeffersonortiz.choroplethapi.dto.ShapeCollectionDto;
 import co.jeffersonortiz.choroplethapi.dto.ShapeDto;
 import co.jeffersonortiz.choroplethapi.services.gis.delegate.GisDelegate;
 import co.jeffersonortiz.choroplethapi.util.rest.helper.RestHelper;
 
+/**
+ * 
+ * @author <a href="mailto:me@jeffersonortiz.com">Jefferson Ortiz Quiroga</a>
+ * @version 1.0
+ */
 @RequestScoped
 @Path("country")
 @Produces({ MediaType.APPLICATION_JSON })
@@ -34,16 +37,12 @@ public class CountryRoute {
 	private GisDelegate delegate;
 	
 	@GET
+	@Path("geojson")
 	public Response getAll() {
+		logger.info("call->GetAll()");
 		List<ShapeDto> dataList = delegate.getAllWord();
 		ShapeCollectionDto response = new ShapeCollectionDto();
 		response.setFeatures(dataList);
-		
-		Gson json = new Gson();
-		
-		logger.info("ShapeCollectionDto " + json.toJson(response));
-		
-		//return helper.responseSucessBuilder(Response.Status.OK, MessageResponseRest.TYPE_SUCCESS, Shape.class.getSimpleName(), response);
-		return Response.status(Response.Status.OK).entity(json.toJson(response)).header("Access-Control-Allow-Origin", "*").build();
+		return helper.responseSucessGeneric(response);
 	}
 }

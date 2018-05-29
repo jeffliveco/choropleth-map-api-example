@@ -16,5 +16,7 @@
   	<module>cmae-common-interface</module>
   	<module>cmae-common-data</module>
   	<module>cmae-common-util</module>
+  	<module>cmae-common-constants</module>
+  	<module>cmae-common-util-services</module>
   </modules>
 </project>

@@ -8,6 +8,7 @@ import javax.ws.rs.core.Application;
 
 import co.jeffersonortiz.choroplethapi.services.gis.routes.CountryRoute;
 import co.jeffersonortiz.choroplethapi.services.gis.routes.MainRoute;
+import co.jeffersonortiz.choroplethapi.util.rest.helper.ExceptionHelper;
 
 @ApplicationPath("/v1/")
 public class GisServiceRestApplication extends Application {
@@ -15,6 +16,7 @@ public class GisServiceRestApplication extends Application {
 		 Set<Class<?>> classes = new HashSet<>();
 		 classes.add(MainRoute.class);
 		 classes.add(CountryRoute.class);
+		 classes.add(ExceptionHelper.class);
 		 return classes;
 	 }
 }
