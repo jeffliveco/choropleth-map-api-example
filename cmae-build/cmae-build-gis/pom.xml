@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>co.jeffersonortiz.choroplethapi</groupId>
 		<artifactId>master-ear</artifactId>
-		<version>0.0.1</version>
+		<version>0.0.2-SNAPSHOT</version>
 		<relativePath>../../project-master/master-ear/pom.xml</relativePath>
 	</parent>
 	
