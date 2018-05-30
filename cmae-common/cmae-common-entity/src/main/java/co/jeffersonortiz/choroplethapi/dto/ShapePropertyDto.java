@@ -20,28 +20,31 @@ public class ShapePropertyDto implements AbstractDto<ShapePropertyDto, ShapeProp
 	
 	private String name;
 	private String iso;
+	private Integer count;
 	
 	public ShapePropertyDto() { }
 	
-	public ShapePropertyDto(String name, String iso) {
+	public ShapePropertyDto(String name, Integer count, String iso) {
 		this.name = name;
+		this.count = count;
 		this.iso = iso;
 	}
 	
-	public ShapePropertyDto(String name) {
+	public ShapePropertyDto(String name, Integer count) {
 		this.name = name;
+		this.count = count;
 	}
 
 	// Mapping to DTO
 	@Override
 	public ShapePropertyDto mapperEntityToDto(ShapeProperty entity) {
-		return new ShapePropertyDto(entity.getName());
+		return new ShapePropertyDto(entity.getName(), entity.getUserCount());
 	}
 
 	@Override
 	public List<ShapePropertyDto> mapperListEntityToListDto(List<ShapeProperty> listEntity) {
 		return listEntity.stream()
-			.map(mapper -> new ShapePropertyDto(mapper.getName()))
+			.map(mapper -> new ShapePropertyDto(mapper.getName(), mapper.getUserCount()))
 			.collect(Collectors.toList());
 	}
 
@@ -73,5 +76,13 @@ public class ShapePropertyDto implements AbstractDto<ShapePropertyDto, ShapeProp
 
 	public void setIso(String iso) {
 		this.iso = iso;
+	}
+
+	public Integer getCount() {
+		return count;
+	}
+
+	public void setCount(Integer count) {
+		this.count = count;
 	}
 }
