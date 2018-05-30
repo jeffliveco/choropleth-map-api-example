@@ -4,7 +4,7 @@
     <groupId>co.jeffersonortiz.choroplethapi</groupId>
     <artifactId>master-war</artifactId>
     <relativePath>../../project-master/master-war/pom.xml</relativePath>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>1.0.0</version>
   </parent>
   
   <artifactId>cmae-services-gis</artifactId>
