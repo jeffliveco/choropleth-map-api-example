@@ -10,6 +10,8 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
+import org.hibernate.ogm.datastore.mongodb.query.parsing.nativequery.impl.NativeQueryParseException;
+
 import com.mongodb.MongoQueryException;
 
 import co.jeffersonortiz.choroplethapi.constants.data.DataAccessError;
@@ -113,6 +115,10 @@ public class ShapeDao extends AbstractDao<Shape, Serializable> {
 			return result;
 		} catch (NoResultException e) {
 			return shapes;
+		} catch (NativeQueryParseException e) {
+			DataAccessError error = DataAccessError.QUERY_ERROR;
+			logger.info(error.message() + ": " + e.getMessage());
+			throw new DataAccessException(error.message(), e.getCause());
 		} catch (MongoQueryException e) {
 			DataAccessError error = DataAccessError.QUERY_ERROR;
 			logger.info(error.message() + ": " + e.getErrorMessage());

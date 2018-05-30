@@ -1,6 +1,7 @@
 package co.jeffersonortiz.choroplethapi.entity;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Transient;
 
 /**
  * 
@@ -11,6 +12,9 @@ import javax.persistence.Embeddable;
 public class ShapeProperty {
 	
     private String name;
+    
+    @Transient
+    private Integer userCount;
 
     /**
      * Constructor
@@ -31,5 +35,13 @@ public class ShapeProperty {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Integer getUserCount() {
+		return userCount;
+	}
+
+	public void setUserCount(Integer userCount) {
+		this.userCount = userCount;
 	}
 }
